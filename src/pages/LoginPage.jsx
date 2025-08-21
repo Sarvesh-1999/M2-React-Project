@@ -1,17 +1,31 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AxiosInstance } from "../routes/axiosInstance";
 const LoginPage = () => {
 
    const [loginUser,setLoginUser] = useState({
       email:"",
       password:""
     })
+
+  const [allRegistredUser,setAllRegisteredUser] = useState([])
   
     const handleChange = (e) => {
       let {name , value} = e.target
       setLoginUser({...loginUser , [name]:value})
     }
+    
+    // get all signup users data
+    async function getAllUsers(){
+     let res = await AxiosInstance.get("/users")
+     console.log(res.data);
+     setAllRegisteredUser(res.data)
+    }
+
+    useEffect(()=>{
+      getAllUsers()
+    }, [])
   
     const handleSubmit = (e) => {
       e.preventDefault()

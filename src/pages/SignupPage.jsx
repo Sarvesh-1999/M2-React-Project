@@ -1,7 +1,9 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useState } from "react";
-import axios from "axios";
+import { AxiosInstance } from "../routes/axiosInstance";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignupPage = () => {
   const [signupUser, setSignupUser] = useState({
@@ -10,32 +12,43 @@ const SignupPage = () => {
     password: "",
   });
 
+
+  let navigate = useNavigate()
+
+
+
   const handleChange = (e) => {
     let { name, value } = e.target;
     setSignupUser({ ...signupUser, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(signupUser);
+    console.log(signupUser);// user data
 
-    axios.post("http://localhost:5000/users", signupUser)
-      .then(() => {
-        alert("Signup Success");
+    // sending data to backend
+    let res = await AxiosInstance.post("/users", signupUser );
+    
+    if(res.status === 201){
+      // alert("Signup success")
+      toast.success("Signup Success")
+
+      navigate("/login")
+
+      setSignupUser({
+        username:"",
+        email:"",
+        password:""
       })
-      .catch((err) => {
-        console.log(err);
-        alert("Signup failed");
-      });
-
+    }else{
+      toast.error("Signup Failed")
+    }
+    
   };
 
   return (
     <div className="h-full w-full bg-amber-300 flex items-center justify-center">
-      <form
-       
-        className="bg-white flex flex-col p-5 gap-2 rounded-2xl shadow-2xl"
-      >
+      <form className="bg-white flex flex-col p-5 gap-2 rounded-2xl shadow-2xl">
         <h1 className="text-2xl font-extrabold text-center">Signup</h1>
 
         <TextField
@@ -66,7 +79,9 @@ const SignupPage = () => {
           variant="outlined"
         />
 
-        <Button  onClick={handleSubmit} variant="contained">Signup</Button>
+        <Button onClick={handleSubmit} variant="contained">
+          Signup
+        </Button>
 
         <p className="mt-5">
           Already a member? <a href=""> Log-in here</a>{" "}
