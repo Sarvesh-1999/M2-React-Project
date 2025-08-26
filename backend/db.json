@@ -29,7 +29,194 @@
       "username": "test5",
       "email": "test5@gmail.com",
       "password": "12345678"
+    },
+    {
+      "id": "8343",
+      "username": "test6",
+      "email": "test6@gmail.com",
+      "password": "123456789"
     }
   ],
-  "admin": []
+  "blogs": [
+    {
+      "title": "Understanding Node.js Event Loop",
+      "description": "event loop in nodejs explained with phases and examples to simplify asynchronous operations",
+      "category": "Node.js",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a111",
+        "userName": "Amit Sharma"
+      },
+      "createdAt": "2025-08-01T10:15:00Z",
+      "updatedAt": "2025-08-01T10:15:00Z",
+      "id": "7ca0"
+    },
+    {
+      "title": "Mastering Express Middleware",
+      "description": "middleware in express are functions that execute during request and response lifecycle to add power and flexibility",
+      "category": "Express.js",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a112",
+        "userName": "Neha Gupta"
+      },
+      "createdAt": "2025-08-02T09:30:00Z",
+      "updatedAt": "2025-08-02T09:30:00Z",
+      "id": "ef7b"
+    },
+    {
+      "title": "Intro to MongoDB Aggregations",
+      "description": "aggregation in mongodb allows advanced querying grouping and transforming of data with pipelines",
+      "category": "MongoDB",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a113",
+        "userName": "Rahul Verma"
+      },
+      "createdAt": "2025-08-03T11:45:00Z",
+      "updatedAt": "2025-08-03T11:45:00Z",
+      "id": "a077"
+    },
+    {
+      "title": "JWT Authentication Simplified",
+      "description": "json web tokens jwt are used to securely transmit information between parties and implement authentication",
+      "category": "Authentication",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a114",
+        "userName": "Priya Singh"
+      },
+      "createdAt": "2025-08-04T13:10:00Z",
+      "updatedAt": "2025-08-04T13:10:00Z",
+      "id": "c559"
+    },
+    {
+      "title": "REST API Best Practices",
+      "description": "rest api should be clean consistent and follow standards for better scalability and maintainability",
+      "category": "API",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a115",
+        "userName": "Sandeep Yadav"
+      },
+      "createdAt": "2025-08-05T15:25:00Z",
+      "updatedAt": "2025-08-05T15:25:00Z",
+      "id": "57ce"
+    },
+    {
+      "title": "Understanding Promises in JS",
+      "description": "promises in javascript represent eventual completion or failure of asynchronous operations",
+      "category": "JavaScript",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a116",
+        "userName": "Anjali Mehta"
+      },
+      "createdAt": "2025-08-06T09:20:00Z",
+      "updatedAt": "2025-08-06T09:20:00Z",
+      "id": "452c"
+    },
+    {
+      "title": "Async Await vs Promises",
+      "description": "async and await provide syntactic sugar over promises making asynchronous code easier to write and read",
+      "category": "JavaScript",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a117",
+        "userName": "Vikas Kumar"
+      },
+      "createdAt": "2025-08-07T10:30:00Z",
+      "updatedAt": "2025-08-07T10:30:00Z",
+      "id": "4c55"
+    },
+    {
+      "title": "Scaling MongoDB Databases",
+      "description": "mongodb scaling involves sharding replication and indexing to handle large amounts of data efficiently",
+      "category": "MongoDB",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a118",
+        "userName": "Sneha Reddy"
+      },
+      "createdAt": "2025-08-08T11:40:00Z",
+      "updatedAt": "2025-08-08T11:40:00Z",
+      "id": "c6a6"
+    },
+    {
+      "title": "Role Based Access Control",
+      "description": "rbac allows assigning roles and permissions to users in a secure and manageable way in applications",
+      "category": "Security",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a119",
+        "userName": "Manish Tiwari"
+      },
+      "createdAt": "2025-08-09T12:50:00Z",
+      "updatedAt": "2025-08-09T12:50:00Z",
+      "id": "3103"
+    },
+    {
+      "title": "Optimizing Express Performance",
+      "description": "express apps can be optimized by using compression caching clustering and monitoring",
+      "category": "Express.js",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a120",
+        "userName": "Rohit Jain"
+      },
+      "createdAt": "2025-08-10T14:05:00Z",
+      "updatedAt": "2025-08-10T14:05:00Z",
+      "id": "0d74"
+    },
+    {
+      "title": "Introduction to MERN Stack",
+      "description": "mern stack combines mongodb express react and nodejs to build full stack applications",
+      "category": "MERN",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a121",
+        "userName": "Divya Kapoor"
+      },
+      "createdAt": "2025-08-11T16:15:00Z",
+      "updatedAt": "2025-08-11T16:15:00Z",
+      "id": "7b55"
+    },
+    {
+      "title": "Caching Strategies for APIs",
+      "description": "caching improves performance by storing responses at client server or proxy level reducing load",
+      "category": "API",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a122",
+        "userName": "Arjun Nair"
+      },
+      "createdAt": "2025-08-12T09:35:00Z",
+      "updatedAt": "2025-08-12T09:35:00Z",
+      "id": "cbde"
+    },
+    {
+      "title": "Working with MongoDB Indexes",
+      "description": "indexes in mongodb speed up queries but come with trade offs of extra storage and slower writes",
+      "category": "MongoDB",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a123",
+        "userName": "Kavita Joshi"
+      },
+      "createdAt": "2025-08-13T11:00:00Z",
+      "updatedAt": "2025-08-13T11:00:00Z",
+      "id": "f629"
+    },
+    {
+      "title": "Understanding Bcrypt for Passwords",
+      "description": "bcrypt is used to securely hash and compare passwords providing strong protection against attacks",
+      "category": "Security",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a124",
+        "userName": "Gaurav Mishra"
+      },
+      "createdAt": "2025-08-14T13:25:00Z",
+      "updatedAt": "2025-08-14T13:25:00Z",
+      "id": "8c14"
+    },
+    {
+      "title": "Introduction to WebSockets",
+      "description": "websockets allow two way communication between client and server for realtime applications",
+      "category": "Web",
+      "createdBy": {
+        "_id": "64a1f3b4c9d8f20011a1a125",
+        "userName": "Simran Kaur"
+      },
+      "createdAt": "2025-08-15T15:40:00Z",
+      "updatedAt": "2025-08-15T15:40:00Z",
+      "id": "3eb6"
+    }
+  ]
 }
