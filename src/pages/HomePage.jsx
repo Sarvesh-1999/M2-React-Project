@@ -26,7 +26,7 @@ const HomePage = () => {
         ) : (
           <article className="grid grid-cols-1 md:grid-cols-4">
             {allBlogs.map((blog,idx) => {
-              return <BlogCard key={idx} blog={blog} />
+              return <BlogCard key={idx} blog={blog}  getAllBlogs={getAllBlogs}/>
             })}
           </article>
         )}
