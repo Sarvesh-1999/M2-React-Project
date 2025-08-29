@@ -20,13 +20,13 @@ const Navbar = () => {
   return (
     <nav className="bg-white/80 backdrop-blur-md shadow-md h-20 w-full px-8 flex items-center justify-between sticky top-0 z-50">
       {/* Logo */}
-      <figure className="text-3xl font-extrabold tracking-wide">
+      <figure className="text-lg md:text-3xl font-extrabold tracking-wide">
         <span className="text-orange-500">Q</span>
         <span className="text-gray-800">-Blogs</span>
       </figure>
 
       {/* Links */}
-      <ul className="flex items-center gap-6 font-medium text-gray-700">
+      <ul className="flex items-center gap-2 md:gap-6 font-medium text-gray-700">
         <li className="cursor-pointer hover:text-blue-500 transition-colors">
           <FaBehance size={22} />
         </li>
