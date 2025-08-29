@@ -2,76 +2,124 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { AxiosInstance } from "../routes/axiosInstance";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import Navbar from "../components/Navbar";
+
 const LoginPage = () => {
+  const [loginUser, setLoginUser] = useState({
+    email: "",
+    password: "",
+  });
 
-   const [loginUser,setLoginUser] = useState({
-      email:"",
-      password:""
-    })
+  const [allRegistredUser, setAllRegisteredUser] = useState([]);
 
-  const [allRegistredUser,setAllRegisteredUser] = useState([])
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-  
-    const handleChange = (e) => {
-      let {name , value} = e.target
-      setLoginUser({...loginUser , [name]:value})
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    setLoginUser({ ...loginUser, [name]: value });
+  };
+
+  async function getAllUsers() {
+    let res = await AxiosInstance.get("/users");
+    setAllRegisteredUser(res.data);
+  }
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let authUser = allRegistredUser.find(
+      (ele) =>
+        ele.email === loginUser.email && ele.password === loginUser.password
+    );
+
+    if (authUser) {
+      localStorage.setItem("token", Date.now());
+      navigate("/");
+      toast.success("Login success 🎉");
+    } else {
+      navigate("/signup");
+      toast.error("Login failed ❌");
     }
-    
-    // get all signup users data
-    async function getAllUsers(){
-     let res = await AxiosInstance.get("/users")
-     console.log(res.data);
-     setAllRegisteredUser(res.data)
-    }
-
-    useEffect(()=>{
-      getAllUsers()
-    }, [])
-  
-    const handleSubmit = (e) => {
-      e.preventDefault()
-      console.log(loginUser);
-
-      // finding registered user in backend
-      let authUser = allRegistredUser.find((ele)=>{
-        return ele.email === loginUser.email && ele.password === loginUser.password
-      })
-      console.log(authUser);
-
-      if (authUser) {
-        localStorage.setItem("token",Date.now())
-        // navigate to home page
-        navigate("/")
-        toast.success("Login success")
-      }else{
-        // navigate to signup page
-        navigate("/signup")
-        toast.error("Login failed")
-      }
-    }
-
+  };
 
   return (
-    <div className="h-full w-full bg-amber-300 flex items-center justify-center">
-      
-      <form  className="bg-white flex flex-col p-5 gap-2 rounded-2xl shadow-2xl">
-        
-        <h1 className="text-2xl font-extrabold text-center">Login</h1>
+    <div className="h-[calc(100vh-80px)] w-full flex items-center justify-center ">
+        <div
+    className="absolute inset-0 z-0"
+    style={{
+      background: "radial-gradient(125% 125% at 50% 10%, #fff 40%, #6366f1 100%)",
+    }}
+  />
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white w-[400px] p-8 rounded-2xl z-50 shadow-2xl flex flex-col gap-6"
+      >
+        {/* Title */}
+        <h1 className="text-3xl font-extrabold text-center text-gray-800">
+          Welcome Back 👋
+        </h1>
+        <p className="text-center text-gray-500 text-sm">
+          Login to continue exploring blogs
+        </p>
 
-        <TextField name="email" value={loginUser.email} onChange={handleChange} id="outlined-basic" label="Email Address" variant="outlined" />
+        {/* Email */}
+        <TextField
+          name="email"
+          value={loginUser.email}
+          onChange={handleChange}
+          label="Email Address"
+          type="email"
+          variant="outlined"
+          fullWidth
+        />
 
-        <TextField name="password" value={loginUser.password} onChange={handleChange} id="outlined-basic" label="Password" variant="outlined" />
+        {/* Password */}
+        <TextField
+          name="password"
+          value={loginUser.password}
+          onChange={handleChange}
+          label="Password"
+          type="password"
+          variant="outlined"
+          fullWidth
+        />
 
-        <p className="text-sm font-semibold mb-5">Forgot Password ?</p>
+        {/* Forgot password */}
+        <p className="text-sm text-right text-blue-600 hover:underline cursor-pointer">
+          Forgot Password?
+        </p>
 
-        <Button variant="contained" onClick={handleSubmit}>Login</Button>
+        {/* Submit button */}
+        <Button
+          type="submit"
+          variant="contained"
+          fullWidth
+          sx={{
+            padding: "10px",
+            borderRadius: "8px",
+            fontWeight: "bold",
+            fontSize: "1rem",
+            textTransform: "none",
+          }}
+        >
+          Login
+        </Button>
 
-        <p className="mt-5">Not a member? <a href=""> Sign-up here</a> </p>
-     
+        {/* Signup redirect */}
+        <p className="text-center text-gray-600 text-sm mt-2">
+          Not a member?{" "}
+          <Link
+            to="/signup"
+            className="text-blue-600 font-semibold hover:underline"
+          >
+            Sign up here
+          </Link>
+        </p>
       </form>
     </div>
   );

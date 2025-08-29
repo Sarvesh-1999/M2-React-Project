@@ -22,14 +22,13 @@ const HomePage = () => {
         {allBlogs.length === 0 ? (
           <h2>No Blogs available...</h2>
         ) : (
-          <article className="grid grid-cols-1 md:grid-cols-4">
-            {allBlogs.map((blog,idx) => {
-              return <BlogCard key={idx} blog={blog}  getAllBlogs={getAllBlogs}/>
-            })}
+          <article className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+            {allBlogs.map((blog, idx) => (
+              <BlogCard key={idx} blog={blog} getAllBlogs={getAllBlogs} />
+            ))}
           </article>
         )}
       </section>
-      
     </div>
   );
 };

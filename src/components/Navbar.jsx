@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { FaBehance } from "react-icons/fa";
-import { FaDribbble } from "react-icons/fa";
+import { FaBehance, FaDribbble, FaHome } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   let token = localStorage.getItem("token");
-
   const navigate = useNavigate();
 
   const [toggle, setToggle] = useState(false);
@@ -20,60 +18,65 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white z-50 shadow-lg h-20 w-full p-3 flex items-center justify-between sticky top-0">
-      <figure className="text-3xl font-extrabold">
-        <span className="text-orange-400">Q</span>-Blogs
+    <nav className="bg-white/80 backdrop-blur-md shadow-md h-20 w-full px-8 flex items-center justify-between sticky top-0 z-50">
+      {/* Logo */}
+      <figure className="text-3xl font-extrabold tracking-wide">
+        <span className="text-orange-500">Q</span>
+        <span className="text-gray-800">-Blogs</span>
       </figure>
 
-      <ul className="flex items-center gap-5 font-semibold">
-        <li className="cursor-pointer">
-          <FaBehance />
+      {/* Links */}
+      <ul className="flex items-center gap-6 font-medium text-gray-700">
+        <li className="cursor-pointer hover:text-blue-500 transition-colors">
+          <FaBehance size={22} />
         </li>
-        <li className="cursor-pointer">
-          <FaDribbble />
+        <li className="cursor-pointer hover:text-pink-500 transition-colors">
+          <FaDribbble size={22} />
         </li>
-
+        <li className="cursor-pointer hover:text-orange-500 transition-colors">
+          <Link to={"/"}>
+            <FaHome size={22} />
+          </Link>
+        </li>
         {token ? (
-          <>
-            <li className="cursor-pointer">
-              <button
-                onClick={openDropdown}
-                className="relative border px-5 py-1 rounded-full bg-blue-500 text-white"
-              >
-                Profile
-                {toggle ? (
-                  <>
-                    <ul className="absolute bg-white rounded shadow-xl right-0 top-9 border border-gray-200 text-black p-2">
-                      <li className="px-4 py-1 hover:text-blue-600 cursor-pointer">
-                        Dashboard
-                      </li>
-                      <li
-                        onClick={handleLogout}
-                        className="px-4 py-1 hover:text-blue-600 cursor-pointer"
-                      >
-                        Logout
-                      </li>
-                    </ul>
-                  </>
-                ) : null}
-              </button>
-            </li>
-          </>
+          <li className="relative">
+            <button
+              onClick={openDropdown}
+              className="border border-blue-500 px-5 py-2 rounded-full bg-blue-500 text-white font-semibold hover:bg-blue-600 transition-all"
+            >
+              Profile
+            </button>
+
+            {/* Dropdown */}
+            {toggle && (
+              <ul className="absolute right-0 mt-3 w-40 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                <li className="px-5 py-3 hover:bg-gray-100 cursor-pointer transition-colors">
+                  Dashboard
+                </li>
+                <li
+                  onClick={handleLogout}
+                  className="px-5 py-3 hover:bg-red-100 text-red-600 cursor-pointer transition-colors"
+                >
+                  Logout
+                </li>
+              </ul>
+            )}
+          </li>
         ) : (
           <>
-            <li className="cursor-pointer">
+            <li>
               <Link
-                to={"/login"}
-                className="border px-5 py-1 rounded-full shadow bg-white text-blue-500"
+                to="/login"
+                className="px-5 py-2 rounded-full border border-blue-500 text-blue-500 font-semibold hover:bg-blue-50 transition-all"
               >
                 Login
               </Link>
             </li>
 
-            <li className="cursor-pointer">
+            <li>
               <Link
-                to={"/signup"}
-                className="border px-5 py-1 rounded-full bg-blue-500 text-white"
+                to="/signup"
+                className="px-5 py-2 rounded-full bg-blue-500 text-white font-semibold hover:bg-blue-600 transition-all shadow-sm"
               >
                 Signup
               </Link>
