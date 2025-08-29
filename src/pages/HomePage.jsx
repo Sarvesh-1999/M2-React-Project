@@ -18,8 +18,6 @@ const HomePage = () => {
 
   return (
     <div>
-      <Navbar />
-
       <section>
         {allBlogs.length === 0 ? (
           <h2>No Blogs available...</h2>

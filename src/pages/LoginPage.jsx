@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AxiosInstance } from "../routes/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Navbar from "../components/Navbar";
 const LoginPage = () => {
 
    const [loginUser,setLoginUser] = useState({

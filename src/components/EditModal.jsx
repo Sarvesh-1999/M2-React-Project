@@ -1,7 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import { AxiosInstance } from "../routes/axiosInstance";
@@ -22,6 +20,8 @@ const style = {
 export default function EditModal(props) {
   // console.log(props.editBlog);
 
+  let token = localStorage.getItem("token")
+
   const [editBlog, setEditBlog] = React.useState({
     category: "",
     title: "",
@@ -39,11 +39,18 @@ export default function EditModal(props) {
     setEditBlog(props.editBlog);
   }, [props.getAllBlogs]);
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    if(!token){
+      toast.error("Login Required")
+      return ;
+    }
+    setOpen(true)
+  };
   const handleClose = () => setOpen(false);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+   
     handleClose();
     let res = await AxiosInstance.put(`/blogs/${editBlog.id}`, editBlog);
     if (res.status === 200) {
