@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { FaBehance, FaDribbble, FaHome } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const [toggle, setToggle] = useState(false);
+  const dropdownRef = useRef(null);
 
   const openDropdown = () => setToggle(!toggle);
 
@@ -15,7 +16,27 @@ const Navbar = () => {
     localStorage.removeItem("token");
     navigate("/login");
     toast.success("Logged Out");
+    setToggle(false);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        toggle &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setToggle(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [toggle]);
+  
 
   return (
     <nav className="bg-white/80 backdrop-blur-md shadow-md h-20 w-full px-8 flex items-center justify-between sticky top-0 z-50">
@@ -39,7 +60,7 @@ const Navbar = () => {
           </Link>
         </li>
         {token ? (
-          <li className="relative">
+          <li className="relative" ref={dropdownRef}>
             <button
               onClick={openDropdown}
               className="border border-blue-500 px-5 py-2 rounded-full bg-blue-500 text-white font-semibold hover:bg-blue-600 transition-all"
