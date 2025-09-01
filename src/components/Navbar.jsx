@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { FaBehance, FaDribbble, FaHome } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
+  const {loggedInUser} = useContext(AuthContext)
+  // console.log(loggedInUser.id);
+  
+  
   let token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -49,10 +54,15 @@ const Navbar = () => {
 
             {/* Dropdown */}
             {toggle && (
-              <ul className="absolute right-0 mt-3 w-40 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
-                <li className="px-5 py-3 hover:bg-gray-100 cursor-pointer transition-colors">
-                  Dashboard
-                </li>
+              <ul
+                onClick={openDropdown}
+                className="absolute right-0 mt-3 w-40 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden"
+              >
+                <Link to={`/userdashboard/${loggedInUser?.id}`}>
+                  <li className="px-5 py-3 hover:bg-gray-100 cursor-pointer transition-colors">
+                    Dashboard
+                  </li>
+                </Link>
                 <li
                   onClick={handleLogout}
                   className="px-5 py-3 hover:bg-red-100 text-red-600 cursor-pointer transition-colors"

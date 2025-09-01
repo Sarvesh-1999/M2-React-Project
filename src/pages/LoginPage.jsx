@@ -1,11 +1,14 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { AxiosInstance } from "../routes/axiosInstance";
 import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { AuthContext } from "../context/AuthContext";
 
 const LoginPage = () => {
+  const { setLoggedInUser } = useContext(AuthContext);
+
   const [loginUser, setLoginUser] = useState({
     email: "",
     password: "",
@@ -39,6 +42,7 @@ const LoginPage = () => {
 
     if (authUser) {
       localStorage.setItem("token", Date.now());
+      setLoggedInUser(authUser)
       navigate("/");
       toast.success("Login success 🎉");
     } else {
@@ -49,12 +53,13 @@ const LoginPage = () => {
 
   return (
     <div className="h-[calc(100vh-80px)] w-full flex items-center justify-center ">
-        <div
-    className="absolute inset-0 z-0"
-    style={{
-      background: "radial-gradient(125% 125% at 50% 10%, #fff 40%, #6366f1 100%)",
-    }}
-  />
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(125% 125% at 50% 10%, #fff 40%, #6366f1 100%)",
+        }}
+      />
       <form
         onSubmit={handleSubmit}
         className="bg-white w-[400px] p-8 rounded-2xl z-50 shadow-2xl flex flex-col gap-6"

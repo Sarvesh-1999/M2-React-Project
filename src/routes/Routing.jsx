@@ -3,7 +3,7 @@ import App from "../App";
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
 import HomePage from "../pages/HomePage";
-
+import UserDashboard from "../pages/UserDashboard";
 
 export let myRoutes = createBrowserRouter([
   {
@@ -22,8 +22,10 @@ export let myRoutes = createBrowserRouter([
         path: "/signup",
         element: <SignupPage />,
       },
+      {
+        path :"/userdashboard/:id",
+        element : <UserDashboard/>
+      }
     ],
   },
 ]);
-
-
